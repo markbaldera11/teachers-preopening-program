@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCLC Pre-Opening Program - Reach26</title>
+
+    <link rel="icon" href="sclclogo.jpg" type="image/jpg">
+    <link rel="apple-touch-icon" href="sclclogo.jpg">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* Base styles with a Green Tinted Background */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(rgba(16, 50, 22, 0.7), rgba(16, 50, 22, 0.7)), url('bg-blurred.png'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-color: #103216; /* Fallback dark green */
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeSlideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Floating Glassmorphism Top Navigation */
+        .nav-wrapper {
+            position: sticky;
+            top: 20px;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            padding: 0 20px;
+            box-sizing: border-box;
+            margin-top: 25px; 
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 50px;
+            padding: 10px 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        nav a {
+            color: #103216;
+            text-decoration: none;
+            padding: 10px 24px;
+            font-weight: 600;
+            font-size: 0.95em;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            animation: popIn 0.5s ease forwards;
+        }
+
+        /* Staggered Navigation Animations */
+        nav a:nth-child(1) { animation-delay: 0.8s; }
+        nav a:nth-child(2) { animation-delay: 0.9s; }
+        nav a:nth-child(3) { animation-delay: 1.0s; }
+        nav a:nth-child(4) { animation-delay: 1.1s; }
+        nav a:nth-child(5) { animation-delay: 1.2s; }
+
+        nav a i {
+            font-size: 1.1em;
+            transition: transform 0.3s ease;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: #437936;
+            color: #ffffff;
+            box-shadow: 0 4px 10px rgba(67, 121, 54, 0.4);
+            border-color: transparent;
+            transform: translateY(-2px);
+        }
+        nav a:hover i, nav a.active i {
+            transform: scale(1.1);
+        }
+
+        /* Main Content Container */
+        .container {
+            max-width: 900px;
+            margin: 40px auto 60px;
+            background: rgba(245, 245, 245, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4);
+            padding: 60px 50px;
+            border-radius: 24px; 
+            min-height: 60vh;
+            box-sizing: border-box;
+            opacity: 0;
+            animation: fadeInScale 0.8s ease forwards;
+            z-index: 10;
+            position: relative; 
+        }
+
+        /* Header Section Animations & Visibility Toggling */
+        .header-section {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 2px dashed rgba(67, 121, 54, 0.4);
+            transition: max-height 0.5s ease, opacity 0.4s ease, margin 0.5s ease, padding 0.5s ease;
+            max-height: 500px;
+            overflow: hidden;
+            opacity: 1;
+        }
+
+        .header-section.hidden {
+            max-height: 0;
+            opacity: 0;
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .header-section > * {
+            opacity: 0;
+            animation: fadeSlideUp 0.8s ease forwards;
+        }
+
+        .header-section h2 { 
+            color: #e59b35; 
+            font-size: 1.2em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+            animation-delay: 0.2s; 
+        }
+
+        .header-section h1 { 
+            color: #103216; 
+            font-size: 2em;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0;
+            margin-bottom: 5px;
+            animation-delay: 0.3s; 
+        }
+
+        .mission-reach { 
+            font-size: 3.5em;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            letter-spacing: -1px;
+            animation-delay: 0.4s; 
+        }
+        
+        .mission-text { color: #103216; text-transform: uppercase; }
+        .reach-text { color: #437936; text-transform: lowercase; }
+
+        .theme { 
+            font-size: 1.4em;
+            font-weight: 800;
+            color: #103216;
+            background: transparent;
+            display: inline-block;
+            padding: 10px 25px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation-delay: 0.5s; 
+        }
+        
+        .theme .theme-label {
+            color: #437936;
+            font-size: 0.8em;
+            display: block;
+            margin-bottom: 5px;
+            font-style: italic;
+        }
+
+        .venue-date { 
+            font-size: 1.05em;
+            color: #444;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation-delay: 0.6s; 
+        }
+
+        /* Tab Content Control */
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Elements inside tabs initially hidden for JS animation */
+        .tab-content h2, 
+        .tab-content .schedule-title, 
+        .tab-content table tr, 
+        .tab-content .coordinators, 
+        .tab-content .lyrics {
+            opacity: 0; 
+        }
+
+        /* Schedule Tables */
+        .tab-content h2 {
+            color: #103216;
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-align: left;
+            border-left: 6px solid #437936;
+            padding-left: 15px;
+        }
+
+        .schedule-title {
+            background: linear-gradient(135deg, #103216, #215428);
+            color: #ffffff;
+            padding: 12px 20px;
+            border-radius: 12px 12px 0 0;
+            margin-bottom: 0;
+            text-align: left;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-bottom: 35px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 0 0 12px 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-top: none;
+        }
+
+        th, td {
+            padding: 16px 20px;
+            text-align: left;
+            vertical-align: top;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        table tr:last-child th, table tr:last-child td { border-bottom: none; }
+
+        th {
+            background-color: rgba(245, 245, 245, 0.9);
+            color: #103216;
+            width: 35%;
+            font-weight: 700;
+        }
+
+        td { color: #222; font-weight: 500; }
+        
+        table tr:hover td, table tr:hover th { background-color: rgba(255, 255, 255, 1); }
+
+        .coordinators {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 0.95em;
+            text-align: center;
+            font-weight: 600;
+            color: #103216;
+            margin-top: 30px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        /* Lyrics and Vow Sections */
+        .special-section {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .special-section h2 {
+            text-align: center;
+            border-left: none;
+            padding-left: 0;
+            color: #437936;
+        }
+
+        .lyrics {
+            text-align: center;
+            white-space: pre-wrap;
+            font-size: 1.1em;
+            color: #222;
+            font-weight: 500;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        /* --- Huge Foreground Watermark --- */
+        .body-watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 200vw; 
+            transform: translate(-50%, -50%) rotate(-35deg); 
+            font-size: 11vw; 
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            color: rgba(16, 50, 22, 0.12); 
+            white-space: nowrap;
+            pointer-events: none; 
+            user-select: none; 
+            z-index: 100; 
+            text-transform: uppercase;
+            text-align: center;
+            line-height: 1.1;
+        }
+
+        .body-watermark span {
+            color: rgba(229, 155, 53, 0.2); 
+            display: block;
+            font-size: 0.4em; 
+            margin-top: -1vw;
+        }
+
+        /* --- Bottom Footer --- */
+        .site-footer {
+            width: 100%;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            padding-bottom: 25px;
+            z-index: 101; 
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+            pointer-events: auto; 
+            position: relative; 
+        }
+
+        .site-footer span {
+            color: #000000; 
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 1050px) {
+            .nav-wrapper { margin-top: 10px; }
+        }
+
+        @media (max-width: 768px) {
+            .container { margin: 20px; padding: 30px 20px; border-radius: 16px; }
+            .header-section h1 { font-size: 1.5em; }
+            .mission-reach { font-size: 2.2em; }
+            nav { padding: 8px; border-radius: 16px; }
+            nav a { padding: 8px 12px; font-size: 0.85em; border-radius: 8px; margin: 2px; }
+            th, td { display: block; width: 100%; box-sizing: border-box; }
+            th { border-bottom: none; padding-bottom: 5px; }
+            td { padding-top: 5px; padding-bottom: 20px; }
+            
+            .body-watermark { 
+                font-size: 16vw; 
+                transform: translate(-50%, -50%) rotate(-55deg); 
+            }
+            .body-watermark span { margin-top: -2vw; }
+
+            .site-footer {
+                font-size: 0.75rem;
+                padding-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- <div class="body-watermark">
+        Max@26
+        <span>*Code Dev*</span>
+    </div> -->
+
+    <div class="nav-wrapper">
+        <nav>
+            <a class="nav-link active" data-target="home">
+                <i class="fa-solid fa-house"></i> Home
+            </a>
+            <a class="nav-link" data-target="day1">
+                <i class="fa-regular fa-calendar-check"></i> Thursday
+            </a>
+            <a class="nav-link" data-target="day2">
+                <i class="fa-solid fa-calendar-day"></i> Friday
+            </a>
+            <a class="nav-link" data-target="theme-song">
+                <i class="fa-solid fa-music"></i> Theme Song
+            </a>
+            <!-- <a href="https://cloud.sclcadventist.org/s/cMMtCkeLPMo5Tmw" target="_blank">
+                <i class="fa-solid fa-cloud"></i> Resources
+            </a> -->
+        </nav>
+    </div>
+
+    <div class="container">
+        <div class="header-section">
+            <h2>South-Central Luzon Conference</h2>
+            <h1>Teachers' Pre-Opening Program</h1>
+            <div class="mission-reach">
+                <span class="mission-text">MISSION</span> <span class="reach-text">reach 26</span>
+            </div>
+            <div class="theme">
+                <span class="theme-label">Theme:</span>
+                Hearts to Trust, Hand to Teach
+            </div>
+            <div class="venue-date">
+                April 23 - 24, 2026<br>
+                SCLC Pavillion
+            </div>
+        </div>
+
+        <div id="day1" class="tab-content">
+            <h2><i class="fa-regular fa-calendar-check" style="color:#437936; margin-right: 10px;"></i>April 23, 2026 - Thursday (Day 1)</h2>
+
+            <h3 class="schedule-title">Morning Devotional (7:30 AM - 9:00 AM)</h3>
+            <table>
+                <tr><th>7:30 - 8:00 AM</th><td>Registration & Welcome Atmosphere</td></tr>
+                <tr><th>Coordinator</th><td>Helmer Jala</td></tr>
+                <tr><th>Pianist</th><td>Edna Abihay</td></tr>
+                <tr><th>Song Leader</th><td>Cherryl Barrientos<br>Sharmay Aguro</td></tr>
+                <tr><th>Opening Song</th><td>MISSION</td></tr>
+                <tr><th>Opening Prayer</th><td>Anjenette Paspos</td></tr>
+                <tr><th>Welcome Remarks</th><td>Jeff Catinggan</td></tr>
+                <tr><th>Musical Offering</th><td>LAA</td></tr>
+                <tr><th>Message</th><td><strong>Pr. Jubille S. Estrada</strong><br><em>Executive Secretary</em></td></tr>
+                <tr><th>Closing Song</th><td>Theme Song</td></tr>
+                <tr><th>Closing Prayer</th><td>Speaker</td></tr>
+                <tr><th>9:00 - 9:10 AM</th><td>HEALTH BREAK</td></tr>
+            </table>
+
+            <h3 class="schedule-title">Director’s Time (9:10 AM - 11:45 AM)</h3>
+            <table>
+                <tr>
+                    <th>Department Presentations</th>
+                    <td>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <strong>Stewardship:</strong> <span>Pr. Rhomel Bautista</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <strong>Publishing:</strong> <span>Mr. Ariel Ramirez</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <strong>NDR-IEL:</strong> <span>Pr. Joel Caspe</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <strong>Ministerial/AM:</strong> <span>Pr. Erne Sariola</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr><th>Musical Offering</th><td>Lorygene Villas</td></tr>
+                <tr>
+                    <th>Department Presentations</th>
+                    <td>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <strong>SS/PM:</strong> <span>Pr. Rodel Honorica</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <strong>Youth:</strong> <span>Pr. Rosevelt Fortu</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <strong>FM & Music:</strong> <span>Pr. Graciano Cuizon</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <strong>Health:</strong> <span>Pr. Exerejon Fegalan</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr><th>Q&A</th><td>All Directors</td></tr>
+                <tr><th>Closing Song</th><td>Theme Song</td></tr>
+                <tr><th>Closing Prayer</th><td>Beltran Claveria</td></tr>
+                <tr><th>12:00 - 1:00 PM</th><td>LUNCH BREAK</td></tr>
+            </table>
+            
+            <h3 class="schedule-title">Afternoon(1:30 PM)</h3>
+            <table>
+                <tr><th>Song Leaders</th><td>Mr. & Mrs. Nomer Benavidez</td></tr>
+                <tr><th>Opening Song</th><td>MISSION</td></tr>
+                <tr><th>Opening Prayer</th><td>Roel Conje</td></tr>
+                <tr><th>Musical Offering</th><td>ALAM</td></tr>
+                <tr><th>Education</th><td>Ms. Mary Kristine Caspe</td></tr>
+                <tr>
+                    <th>Administrator’s Time</th>
+                    <td>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                            <strong>Executive Secretary:</strong> <span>Pr. Jubille S. Estrada</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                            <strong>Treasurer:</strong> <span>Mr. Rubini D. Vargas, Jr.</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr><th>Q&A</th><td>Administrators</td></tr>
+                <tr><th>Closing Song</th><td>Theme Song</td></tr>
+                <tr><th>Closing Prayer</th><td>Marvin Mondido</td></tr>
+            </table>
+        </div>
+
+        <div id="day2" class="tab-content">
+            <h2><i class="fa-solid fa-calendar-day" style="color:#437936; margin-right: 10px;"></i>April 24, 2026 - Friday (Day 2)</h2>
+
+            <h3 class="schedule-title">Morning Devotional (7:30 AM - 9:00 AM)</h3>
+            <table>
+                <tr><th>Coordinator</th><td>Emer Dayo</td></tr>
+                <tr><th>Pianist</th><td>Edna Abihay</td></tr>
+                <tr><th>Song Leaders</th><td>Mr. & Mrs. Remuel Fetizanan</td></tr>
+                <tr><th>Opening Song</th><td>MISSION</td></tr>
+                <tr><th>Opening Prayer</th><td>Ezekiel Ludovice</td></tr>
+                <tr><th>Welcome Remarks</th><td>Elizabeth Mariño</td></tr>
+                <tr><th>Musical Offering</th><td>AQUAT</td></tr>
+                <tr><th>Message</th><td><strong>Ms. Agnes Ravalo</strong><br><em>SLPUM Education Superintendent</em></td></tr>
+                <tr><th>Closing Song</th><td>Theme Song</td></tr>
+                <tr><th>Closing Prayer</th><td>Speaker</td></tr>
+                <tr><th>9:00 - 9:10 AM</th><td>HEALTH BREAK</td></tr>
+            </table>
+
+            <h3 class="schedule-title">Morning Sessions (9:10 AM - 12:00 PM)</h3>
+            <table>
+                <tr><th colspan="2" style="background-color: rgba(67, 121, 54, 0.1); text-align: center; font-weight: bold; padding: 10px;">SESSION 1 (9:10 AM - 10:45 AM)</th></tr>
+                <tr><th>To Introduce the Speaker</th><td>Wenona Credo</td></tr>
+                <tr><th>Resource Speaker</th><td><strong>Arlene Cabadin</strong></td></tr>
+                <tr><th>Topic</th><td><em>Positive Discipline in a Wounded Generation</em></td></tr>
+                
+                <tr><th colspan="2" style="background-color: rgba(67, 121, 54, 0.1); text-align: center; font-weight: bold; padding: 10px;">SESSION 2 (10:45 AM - 12:00 PM)</th></tr>
+                <tr><th>To Introduce the Speaker</th><td>Fe Oblea</td></tr>
+                <tr><th>Resource Speaker</th><td><strong>Agnes Ravalo</strong></td></tr>
+                <tr><th>Topic</th><td><em>Winning the Heart before the Mind</em></td></tr>
+                <tr><th>Closing Song</th><td>Theme Song</td></tr>
+                <tr><th>Closing Prayer</th><td>Erold Tendan</td></tr>
+                <tr><th>12:00 - 1:30 PM</th><td>LUNCH BREAK</td></tr>
+            </table>
+
+            <h3 class="schedule-title">Afternoon Sessions (1:30 PM - 3:30 PM)</h3>
+            <table>
+                
+                <tr><th>Song Leaders</th><td>Dess Dayo</td></tr>
+                <tr><th>Opening Song</th><td>MISSION</td></tr>
+                <tr><th>Opening Prayer</th><td>Glaicel Maido</td></tr>
+                <tr><th>Musical Offering</th><td>BATA</td></tr>
+
+                <tr><th colspan="2" style="background-color: rgba(67, 121, 54, 0.1); text-align: center; font-weight: bold; padding: 10px;">SESSION 3 (1:30 PM - 2:30 PM)</th></tr>
+                <tr><th>Resource Speaker</th><td><strong>Agnes Ravalo</strong></td></tr>
+                <tr><th>Topic</th><td><em>Every Teacher A Missionary</em></td></tr>
+                <tr><th>Musical Offering</th><td>All New Teachers</td></tr>
+
+                <tr><th colspan="2" style="background-color: rgba(67, 121, 54, 0.1); text-align: center; font-weight: bold; padding: 10px;">SESSION 4 (2:30 PM - 3:30 PM)</th></tr>
+                <tr><th>Resource Speaker</th><td><strong>Agnes Ravalo</strong></td></tr>
+                <tr><th>Topic</th><td><em>From Burnout to Purpose</em></td></tr>
+                <tr><th>Q&A</th><td>Session Speakers</td></tr>
+            </table>
+
+            <h3 class="schedule-title">Commitment (3:30 PM - 4:30 PM)</h3>
+            <table>
+                <tr><th>Song Leaders</th><td>Madeline Galicia<br>Mae Faigao</td></tr>
+                <tr><th>Opening Song</th><td>MISSION</td></tr>
+                <tr><th>Opening Prayer</th><td>Renato Ricohermoso</td></tr>
+                <tr><th>Welcome Remarks</th><td>May Balog</td></tr>
+                <tr><th>Musical Offering</th><td>All Principal</td></tr>
+                <tr><th>Message</th><td><strong>Pr. Erne Sariola</strong><br><em>Ministerial Secretary</em></td></tr>
+                <tr><th>Commitment & Dedicatory</th><td></td></tr>
+                <tr><th>Closing Song</th><td>Theme Song</td></tr>
+                <tr><th>Closing Prayer</th><td>Aryel Ligalig</td></tr>
+            </table>
+        </div>
+
+        <div id="theme-song" class="tab-content special-section">
+            <h2><i class="fa-solid fa-music" style="margin-right: 10px;"></i>Theme Song: MISSION</h2>
+            <div class="lyrics">
+1
+We’ve been called to speak boldly far and near
+Jesus is the only way 
+With a humble heart, let us do our part
+That’s our mission everyday 
+
+Prophecies fulfilled, there’s no time to waste
+Let’s declare that Jesus saves
+Christ so loved the world that He gave his life
+This truth we shall proclaim 
+
+<strong>Refrain</strong>
+Grounded in the Bible focus on the mission
+Till we see Him high in the clouds 
+Soon we’ll hear the trumpets 
+Thunder will be sounding 
+Here He comes the King of kings
+He descends in glory majesty and power
+What a joyful day that will be 
+
+2
+We’ve been called to pray for the latter rain
+and to walk in unity 
+Hand in hand we stand, all across the land 
+Preaching for the world to see
+He’s the great I am,
+He is the Lord of lords
+ Worthy of our highest praise 
+Wonders will be seen as the spirit leads 
+If only we remain
+
+<strong>Refrain</strong>
+Grounded in the Bible focus on the mission
+Till we see Him high in the clouds 
+Soon we’ll hear the trumpets 
+Thunder will be sounding 
+Here He comes the King of kings
+He descends in glory majesty and power
+What a joyful day that will be 
+
+Grounded in the Bible focus on the mission
+Till we see Him high in the clouds 
+Soon we’ll hear the trumpets 
+Thunder will be sounding 
+Here He comes the King of kings
+He descends in glory majesty and power
+What a joyful day that will be 
+            </div>
+        </div>
+
+    </div>
+
+    <div class="site-footer">
+        <span>&copy; 2026 | By JM Baldera</span>
+    </div>
+
+    <script>
+        // Function to trigger cascading animations inside a target tab
+        function animateTabElements(targetId) {
+            const elementsToAnimate = document.querySelectorAll(
+                `#${targetId} h2, #${targetId} .schedule-title, #${targetId} table tr, #${targetId} .coordinators, #${targetId} .lyrics`
+            );
+            
+            elementsToAnimate.forEach((el, index) => {
+                el.style.animation = 'none'; // reset animation
+                el.offsetHeight; // trigger browser reflow
+                // add staggered delay so they cascade down nicely
+                el.style.animation = `fadeSlideUp 0.5s ease forwards ${index * 0.08}s`; 
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('.nav-link');
+            const tabs = document.querySelectorAll('.tab-content');
+            const headerSection = document.querySelector('.header-section');
+
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Check if it's an external link (like the Resources button)
+                    if (this.hasAttribute('target') && this.getAttribute('target') === '_blank') {
+                        return; // Let it open the link naturally, don't run the tab logic
+                    }
+
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('data-target');
+
+                    // 1. Show or hide the header based on whether "home" was clicked
+                    if (targetId === 'home') {
+                        if (headerSection) headerSection.classList.remove('hidden');
+                    } else {
+                        if (headerSection) headerSection.classList.add('hidden');
+                    }
+                    
+                    // 2. Remove active class from all links and hide all tabs
+                    links.forEach(l => l.classList.remove('active'));
+                    tabs.forEach(t => t.classList.remove('active'));
+
+                    // 3. Add active class to the link you just clicked
+                    this.classList.add('active');
+
+                    // 4. Find the matching 'id' and add the active class to show it (if it isn't home)
+                    if (targetId && targetId !== 'home') {
+                        const targetElement = document.getElementById(targetId);
+                        if(targetElement) {
+                            targetElement.classList.add('active');
+                            // Trigger cascading animation on the newly opened tab elements
+                            animateTabElements(targetId);
+                        }
+                    }
+
+                    // 5. Smooth scroll to the top of the container when a tab is clicked
+                    window.scrollTo({
+                        top: document.querySelector('.container').offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
